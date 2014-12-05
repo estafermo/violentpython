@@ -25,7 +25,8 @@ def connect(host, user, password, release):
 			time.sleep(1)
 			connect(host, user, password, False)
 	finally:
-		if release: connection_lock.release()
+		if release: 
+			connection_lock.release()
 def main():
 	parser = optparse.OptionParser('usage%prog -H <target host> -u <user> -F <password list>')
 	parser.add_option('-H', dest='tgtHost', type='string',help='specify target host')
