@@ -3,7 +3,7 @@ import os
 import optparse
 import sys
 
-def findTgs(subNet):
+def findTgts(subNet):
 	nmScan=nmap.PortScanner()
 	nmScan.scan(subNet,'445')
 	tgtHosts=[]
